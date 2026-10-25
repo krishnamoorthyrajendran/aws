@@ -1,1 +1,21 @@
-test
+# Helm installation:
+====================
+curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+helm version
+
+1. Create a Helm chart
+helm create my-nginx
+2. Create a Kubernetes namespace
+kubectl create ns helm-nginx
+3. Install the Helm chart
+helm install dev_nginx . -n helm-nginx
+4. List Helm releases
+helm list -n helm-nginx
+5. Upgrade the Helm release
+helm upgrade dev-nginx . -n helm-nginx -f values.yaml
+6. Check revision history
+helm history dev_nginx -n helm-nginx
+7. Roll back to Revision 1
+helm rollback dev_nginx 1 -n helm-nginx
+8. Check release status
+helm status dev_nginx -n helm-nginx
