@@ -1,1 +1,22 @@
-test
+# ArgoCD Installation:
+======================
+kubectl create namespace argocd 
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml 
+
+# Download the yamls files
+curl -O https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+search :     targetPort: 8080 and add nodeport
+kubectl apply -f install.yaml -n argocd
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d 
+
+TLGzuf5jk1Vb71r0 
+
+kubectl get all -n argocd 
+
+# webhook
+SECRET="krishnamoorthy"
+kubectl -n argocd patch secret argocd-secret --type merge -p \
+"{\"stringData\": {\"webhook.github.secret\": \"${SECRET}\"}}"
