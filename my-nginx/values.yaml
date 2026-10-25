@@ -1,0 +1,16 @@
+app:
+  name: myapp
+  image: ubuntu/apache2
+  version: latest
+  port: 80
+  replicas: 5
+
+service:
+  type: NodePort
+  port: 80
+  nodeport: 30080
+httpRoute:
+  enabled: false
+
+ingress:
+  enabled: false
